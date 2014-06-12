@@ -13,6 +13,13 @@
 \usepackage{tikz}
 
 \setlength{\parindent}{1cm}
+\makeatletter
+\@addtoreset{chapter}{part}
+\makeatother
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+\makeatother
 
 \newtheorem{goal}{Ziel}
 
@@ -25,5 +32,16 @@
 \tableofcontents
 
 \input{20140414}
+\input{20140417}
+\input{20140424}
 \input{20140428}
+\input{20140505}
+\input{20140508}
+\input{20140515}
+\input{20140519}
+\input{20140522}
+\input{20140526}
+\input{20140602}
+\input{20140605}
+\input{20140612}
 \end{document}
