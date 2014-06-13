@@ -1,4 +1,146 @@
 \section{Komplikationen: Veränderungen der Koordinaten}
-\section{Sternörter}
-\section{Bezugssysteme der Zeit}
+\paragraph{Ursache} Drehimpuls \emph{nicht} raumfest
+\paragraph{wichtigste Störungen}
+\begin{itemize}
+    \item lunisolare Präzession
+    \item Nutation
+    \item Planetenpräzession
+\end{itemize}
 
+\subsection{Lunisolare Präzession}
+\[
+    \left.
+    \begin{array}{lr@{\ }l}
+        \text{Äquatorradius:} & a &= 6378.14\,\kilo\metre \\
+        \text{Polradius:} & b &= 6346.755\,\kilo\metre
+    \end{array}
+    \right\} \Delta \approx 21.4 \kilo\metre
+\]
+
+Abplattung der Erde:
+\[ \varphi = \left(\frac{a - b}{a}\right) = \frac{1}{298.253} \]
+$\Rightarrow$ \framebox{Kreisel}
+
+Präzession im Kraftfeld: Mond --  Sonne
+
+\begin{center}
+    \begin{tikzpicture}[scale=3,tdplot_main_coords]
+
+        \coordinate (O) at (0,0,0);
+        \tdplotsetcoord{S}{1}{23.5}{-90}
+
+        \draw [gray,thick] (1, -2.2, 0) -- (1, 2.2, 0) node [right] {\color{black} Ekliptik};
+        \draw [gray,dotted] (0.5, -2.2, 0) -- (0.5, 2.2, 0);
+        \draw [gray,thick] (0, -2.2, 0) -- (0, 2.2, 0);
+        \draw [gray,dotted] (-0.5, -2.2, 0) -- (-0.5, 2.2, 0);
+        \draw [gray,thick] (-1, -2.2, 0) -- (-1, 2.2, 0);
+
+        \draw [gray,thick] (1.5, -2, 0) -- (-1.5, -2, 0);
+        \draw [gray,dotted] (1.5, -1.5, 0) -- (-1.5, -1.5, 0);
+        \draw [gray,thick] (1.5, -1, 0) -- (-1.5, -1, 0);
+        \draw [gray,dotted] (1.5, -0.5, 0) -- (-1.5, -0.5, 0);
+        \draw [gray,thick] (1.5, 0, 0) -- (-1.5, 0, 0);
+        \draw [gray,dotted] (1.5, 0.5, 0) -- (-1.5, 0.5, 0);
+        \draw [gray,thick] (1.5, 1, 0) -- (-1.5, 1, 0);
+        \draw [gray,dotted] (1.5, 1.5, 0) -- (-1.5, 1.5, 0);
+        \draw [gray,thick] (1.5, 2, 0) -- (-1.5, 2, 0);
+
+        \draw (0,-2.1,0) -- (0, 2.2, 0) node[anchor=west] {Äquator};
+        \draw (0,1.7,0.678) -- (0,-1.7,-0.678);
+        \draw [->] (O) -- (0, 0, 1) node[anchor=south] {$\vec n_b$};
+        \draw [->] (O) -- (S) node[anchor=south] {$\vec n_e$};
+
+        \tdplotdrawarc[->]{(Sz)}{0.3987}{0}{360}{}{}
+        \tdplotsetthetaplanecoords{90}
+        \tdplotdrawarc[dotted, tdplot_rotated_coords]{(O)}{1}{90}{66.5}{anchor=east}{$\sim 23.5\degree$}
+        \tdplotsetthetaplanecoords{-90}
+        \tdplotdrawarc[dotted, tdplot_rotated_coords]{(O)}{0.5}{23.5}{0}{anchor=north}{$\sim 23.5\degree$}
+    \end{tikzpicture}
+\end{center}
+
+\paragraph{Folge} 
+Erdrotationsachse $\vec n_e$ rotiert in $\sim 25700$ Jahren um den Pol der
+Ekliptik $\vec n_b$
+
+\subsection{Nutation}
+\paragraph{Problem} Mondbahn ist gegen die Ekliptik um $5.15\degree$ geneigt\\
+$\Rightarrow$ Präzession: 18.6 Jahre
+
+\subsection{Planetenpräzession}
+Einfluss der Planeten auf die Erdbahn\\
+$\Rightarrow$ Verschiebung des Frühlingspunkts um $\sim 0.1\arcsecond$ pro Jahr \\
+$\hookrightarrow$ Problem: Zeitabhängigkeit
+
+\section{Sternörter}
+\begin{itemize}
+    \item \textbf{Sternbild:} IAU 1928 feste Grenzen für Sternbilder: 88 Sternbilder
+    \item \textbf{Sternnamen:}\\
+        Problem: mehrdeutig / kompliziert
+        \begin{itemize}
+            \item 78 hellsten Sterne mit historischen Namen\\
+                z. B. Sirius, Wega, Aldebaran, Algol, ...
+            \item seit 1603 (\textsc{Beyer}): kleine griechische Buchstaben + 
+                Genitiv des lateinischen Sternbildnamen\\
+                z. B. $\alpha$ Ori, $\gamma$ UMa, $\varepsilon$ Cyg
+
+                Sequenz: meist Helligkeit, manchmal Konstellation im Sternbild
+            \item \textsc{Flamsteed:} Buchstaben $\rightarrow$ Nummern in 
+                Reihenfolge der Rektaszension im Sternbild\\
+                z. B. 22, 20, 23, 21 Her
+
+                \textbf{Problem:} Reihenfolge nicht stabil!
+            \item \textbf{Moderne Bezeichnung:} \framebox{Katalog + Katalognummer}\\
+                z. B. HD 483705 (meist Rektanzension, HD = \textsc{Henry} -- \textsc{Draper})
+            \item \textbf{Folge:} Vielfachbezeichnung\\
+                z. B. Wega = $\alpha$ Lyr = 3 Lyr = HR7001 = DM383230 = SAO 67174
+            \item speziell: Doppelsterne
+
+                \textbf{Index:} Puchstaben / Ziffern \\
+                z. B. Sirius A, Begleiter: Sirius B
+            \item Variable Sterne
+            \item Röntgenquellen / Radioquellen
+        \end{itemize}
+    \item Datenbank: SIMBAD
+\end{itemize}
+
+\section{Bezugssysteme der Zeit}
+\begin{itemize}
+    \item Fixpunkte der Zeitrechnung $\rightarrow$ bevorzugte Positionen bezüglich
+        der rotierenden Bezugussysteme
+    \item Maßeinheiten der Zeit: Periodizität\\
+        Tag, Jahr
+\end{itemize}
+
+\paragraph{ursprünglich} Sonne $\longrightarrow$ Tag
+\paragraph{wahre Sonnenzeit} Stundenwinkel der Sonne (obere Kulmination $\longrightarrow$ obere Kulmination) \\
+$\rightarrow$ angezeigt durch Sonnenuhr
+\paragraph{Problem} ungleichmäßig $\Rightarrow$ praktisch unbrauchbar
+\paragraph{Ursachen}
+\begin{enumerate}
+    \item Ellipsenbahnen $\Rightarrow$ 2. \textsc{Kepler}'sches Gesetz
+    \item Projektionseffekt
+\end{enumerate}
+
+\paragraph{Lösung} Definition einer mittleren Sonnenzein mit gleicher
+    Geschwindigkeit auf dem Äquator\\
+    $\Rightarrow$ mittlere Sonnenzeit
+\paragraph{Differenz} Zeitgleichung
+\[ \boxed{z = \text{wahre Sonnenzeit} - \text{mittlere Sonnenzeit}} \]
+\[ z(t) = -0.27^{\mathrm{m}} + 7.18^{\mathrm{m}} \sin(\underbrace{\omega t + 178\degree}_{\text{Ellipse}}) +
+          9.85^{\mathrm{m}} \sin(\underbrace{2 \omega t + 201\degree}_{\text{Projektion}}), \qquad
+      \omega = \frac{360\degree}{267.2422\,\mathrm{d}}\]
+
+\begin{itemize}
+    \item UT: universal time -- Einheit: mittlerer Sonnentag (Greenwich)
+    \item GMST: mittlere Sternzeit in Greenwich
+    \item TAI: internationale Atomzeit -- Einheit: $\second$
+\end{itemize}
+
+\paragraph{Kalender} Problem: Bezugspunkt für Jahreslänge $\Rightarrow$
+    unterschiedliche "`Jahre"'
+
+\paragraph{Jahr} kein ganzes Vielfaches eines Tages\\
+$\Rightarrow$ Schaltjahre und Kalenderreformen
+
+\paragraph{Lösung} Astronomen vewenden das Julianische Datum
+\[ \text{JD}\underbracket{\text{xxxxx}}_{\text{Tage}}.\underbracket[1pt][1.2em]{\text{xx}}_{\mathclap{\text{Stunden, Minuten, Sekunden}}} \qquad \text{gemessen \emph{nur} in Tagen} \]

@@ -20,14 +20,42 @@
 \begin{description}
     \item[Eigendrehimpuls]  $\vec n_e$
     \item[Bahndrehimpuls]   $\vec n_b$
-    \item[Einheitsvektor in Richtung Frühlingspunkt]   $\vec n_F$
+    \item[Einheitsvektor in Richtung Frühlingspunkt]   $\vec n_{\vernal}$
 \end{description}
 
 \begin{equation}
-    (\vec n_e \times \vec n_b) = \vec n_F
+    (\vec n_e \times \vec n_b) = \vec n_{\vernal}
 \end{equation}
 
-% TODO: abbildung
+\begin{definition}
+    Orthonormalsystem Äquatorialsystem: $(\vec n_e$, $\vec n_{\vernal}$, $(\vec n_e \times \vec n_{\vernal}))$
+\end{definition}
+
+\begin{center}
+    \begin{tikzpicture}[scale=4,tdplot_main_coords]
+        \pgfmathsetmacro{\rvec}{0.8}
+        \pgfmathsetmacro{\alphavec}{60}
+        \pgfmathsetmacro{\deltavec}{30}
+
+        \coordinate (O) at (0,0,0);
+        \tdplotsetcoord{S}{\rvec}{\deltavec}{\alphavec}
+
+        \draw [->, thick] (O) -- (1, 0, 0) node[anchor=north east] {$\vec n_{\vernal}$};
+        \draw [->, thick] (O) -- (0, 1, 0) node[anchor=north west] {$(\vec n_e \times \vec n_{\vernal})$};
+        \draw [->, thick] (O) -- (0, 0, 1) node[anchor=south] {$\vec n_e$};
+
+        \tdplotsetrotatedcoords{60}{40}{30}
+
+        \tdplotdrawarc[dashed]{(O)}{1.5}{0}{360}{anchor=south west}{Himmelsäquator}
+        \draw [->] (O) -- (S) node [pos=0.5, anchor=south east] {$r$};
+        \draw [dotted] (O) -- (Sxy);
+        \draw [dotted] (Sxy) -- (S) node [anchor=south west] {$\vec n$};
+        \tdplotdrawarc[dotted]{(O)}{0.3}{0}{\alphavec}{anchor=south}{$\alpha$}
+        \tdplotsetthetaplanecoords{\alphavec}
+        \tdplotdrawarc[dotted, tdplot_rotated_coords]{(O)}{0.2}{\deltavec}{90}{anchor=east}{$\delta$}
+    \end{tikzpicture}
+    \[ \vec n = \sin \delta \cdot \vec n_e + \cos \delta \cdot \cos \alpha \cdot \vec n_{\vernal} + \cos \delta \cdot \sin \alpha \cdot (\vec n_e \times \vec n_{\vernal}) \]
+\end{center}
 
 \begin{itemize}
     \item $\alpha$: Rektaszension [$^\mathrm{h}$, $^\mathrm{m}$, $^\second$]

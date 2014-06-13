@@ -2,6 +2,7 @@
 
 \usepackage[dvipsnames,table]{xcolor}
 \usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{mathtools}
 \usepackage{cancel}
 \usepackage[ngerman]{babel}
 \usepackage{enumerate}
@@ -11,8 +12,10 @@
 \usepackage{graphicx}
 \usepackage[amssymb]{SIunits}
 \usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{wasysym}
 
-\setlength{\parindent}{1cm}
+\setlength{\parindent}{0cm}
 \makeatletter
 \@addtoreset{chapter}{part}
 \makeatother
@@ -21,7 +24,13 @@
 \patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
 \makeatother
 
-\newtheorem{goal}{Ziel}
+\theoremstyle{remark}
+\newtheorem*{goal}{Ziel}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\tdplotsetmaincoords{60}{110}
 
 \title{Skript - Einführung in die Astronomie und Astrophysik}
 \author{Transkribiert von\\ Martine Lenders und Robin Nehls}

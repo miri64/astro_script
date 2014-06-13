@@ -1,7 +1,216 @@
 \subsection[Horizontsystem]{Horizontsystem (lokales irdisches Koordinatensystem)}
+\begin{description}
+    \item[Zenitvektor] $\vec n_z$, Richtung: Erdmittelpunkt -- Beobartungsposition
+         Erdoberfläche
+     \item[Nadir] Fußpunkt
+     \item[Horizontebene]
+         \begin{itemize}
+             \item Vektor in Nordrichung: $\vec n_N$
+             \item Vektor in Westrichtung: $\vec n_W = \vec n_z \times \vec n_N$
+         \end{itemize}
+     \item[Azimut] $\varphi$
+     \item[Höhe] $h$
+     \item[Zenitdistanz] $z = 90\degree - h \Leftrightarrow z + h = 90\degree$
+\end{description}
+
+\begin{definition}
+    Ortonormalsystem Horizontsystem: $(\vec n_z, \vec n_N, \vec n_W)$
+\end{definition}
+
+
+\begin{center}
+    \begin{tikzpicture}[scale=4,tdplot_main_coords]
+        \pgfmathsetmacro{\rvec}{0.8}
+        \pgfmathsetmacro{\phivec}{120}
+        \pgfmathsetmacro{\hvec}{30}
+
+        \coordinate (O) at (0,0,0);
+        \tdplotsetcoord{S}{\rvec}{\hvec}{\phivec}
+
+        \draw [->, thick] (O) -- (1, 0, 0) node[anchor=north east] {$\vec n_N$};
+        \draw [->, thick] (O) -- (0, 1, 0) node[anchor=north west] {$\vec n_W$};
+        \draw [->, thick] (O) -- (0, 0, 1) node[anchor=south] {$\vec n_z$};
+
+        \tdplotsetrotatedcoords{60}{40}{30}
+
+        \tdplotdrawarc[dashed]{(O)}{1.5}{0}{360}{anchor=south west}{Horizontebene}
+        \draw [->] (O) -- (S) node [pos=0.5, anchor=south east] {$r$};
+        \draw [dotted] (O) -- (Sxy);
+        \draw [dotted] (Sxy) -- (S) node [anchor=south west] {$\vec n$};
+        \tdplotdrawarc[dotted]{(O)}{0.3}{0}{\phivec}{anchor=south east}{$\varphi$}
+        \tdplotsetthetaplanecoords{\phivec}
+        \tdplotdrawarc[dotted, tdplot_rotated_coords]{(O)}{0.2}{\hvec}{90}{anchor=30}{$h$}
+        \tdplotdrawarc[<-, dotted, tdplot_rotated_coords]{(O)}{0.2}{0}{\hvec}{anchor=70}{$z$}
+    \end{tikzpicture}
+
+    \textbf{Position}: $(\varphi, z)$ oder $(\varphi, h)$
+    \[ \vec n = \sin \delta \cdot \vec n_W + \cos \delta \cdot \cos \alpha \cdot \vec n_N + \cos \delta \cdot \sin \alpha \cdot \vec n_z \]
+\end{center}
+
+\begin{description}
+    \item[wahrer Horizont] Ebene durch Erdmittelpunkt
+    \item[schwere Nachteile]
+        \begin{itemize}
+            \item Koordinaten sind ortsabhängig
+            \item Koordinaten sind zeitabhängig
+        \end{itemize}
+\end{description}
+
 \subsection[Globale irdische Koordinaten]{Globale irdische Koordinaten $(l, b)$}
+\begin{goal}
+    Position des Beobachters $\vec n_z$ global angeben
+\end{goal}
+\begin{center}
+    \begin{tikzpicture}[scale=4,tdplot_main_coords]
+        \pgfmathsetmacro{\rvec}{0.8}
+        \pgfmathsetmacro{\lvec}{100}
+        \pgfmathsetmacro{\bvec}{16}
+
+        \coordinate (O) at (0,0,0);
+        \tdplotsetcoord{S}{\rvec}{\bvec}{\lvec}
+        \tdplotsetcoord{G}{1.5}{51.5}{0}
+
+        \draw [->, thick] (O) -- (1, 0, 0) node[anchor=north east] {$\vec n_1$};
+        \draw [->, thick] (O) -- (0, 1, 0) node[anchor=north west] {$\vec n_2$};
+        \draw [->, thick] (O) -- (0, 0, 1) node[anchor=south] {$\vec n_e$};
+
+        \tdplotsetrotatedcoords{60}{40}{30}
+
+        \tdplotdrawarc[dashed]{(O)}{1.5}{0}{360}{anchor=south west}{Äquator}
+        \draw [->] (O) -- (S) node [pos=0.5, anchor=south east] {$r$};
+        \draw [->] (O) -- (G) node [anchor=south east] {$\vec n_z^G$};
+        \draw [dotted] (O) -- (Sxy);
+        \draw [dotted] (Sxy) -- (S) node [anchor=south west] {$\vec n_z$};
+        \tdplotdrawarc[dotted]{(O)}{0.21}{0}{\lvec}{anchor=south east}{$l$}
+        \tdplotsetthetaplanecoords{\lvec}
+        \tdplotdrawarc[dotted, tdplot_rotated_coords]{(O)}{0.2}{\bvec}{90}{anchor=30}{$b$}
+        \tdplotsetthetaplanecoords{0}
+        \tdplotdrawarc[dashed, tdplot_rotated_coords]{(O)}{1.5}{90}{-90}{anchor=east}{Nullmeridian}
+    \end{tikzpicture}
+    \[ \vec n_z = \sin \delta \cdot \vec n_e + \cos \delta \cdot \cos \alpha \cdot \vec n_1 + \cos \delta \cdot \sin \alpha \cdot \vec n_2 \]
+\end{center}
+$\hookrightarrow$ 1. Nachteil: Ausgleich der Ortsabhängigkeit
+
 \subsection{Beziehung zwischen den Koordinatensystemen}
+\subsubsection{Projektion auf Himmelsäquator}
+\begin{description}
+    \item[Winkel $\Theta$] von Projektion von $\vec n_z$ bei $\vec n_{\vernal}$ \\
+        $\rightarrow$ Sternzeit $[ \mathrm{h} : \mathrm{m} : \second ]$
+    \item[Speziell] $\Theta_G$ Sternzeit Greenwich
+        \[ \underbrace{\Theta(l)}_{\vec n_z} = \underbrace{\Theta_G}_{\vec n_z^G} - l \]
+    \item[Sternzeit $\rightarrow$ Uhrzeit] Beispiel: $\Theta_G$
+        \begin{align*}
+            \Theta_G(t) &= \underbrace{\Theta_G(0)}_{t = 0\,\mathrm{h}} + t\left(\frac{367.24}{365.24}\right) \\
+            1\,\mathrm{a} &= \underbrace{366.24\,\mathrm{d}}_{\text{Sterntage}} = \underbrace{365.24\,\mathrm{d}}_{\text{normale Tage}} \\
+                          &\Rightarrow \text{1 Sterntag ist kürzer als ein normaler Tag}
+        \end{align*}
+\end{description}
+
+\begin{itemize}
+    \item $\tau$: Winkel zwischen projezierten $\vec n_z$ und projezierten $\vec n$ (Objekt) \\
+        $\rightarrow$ Stundenwinkel\\
+        $\Rightarrow$ Sternzeit ist der Stundenwinkel des Frühlingspunkts
+    \item Beziehung zwischen den Koordinatensystemen:
+        \[ \boxed{\tau = \Theta(l, t) - \alpha = \theta_G(0) + t \left(\frac{366.24}{365.24}\right) - l - \alpha} \]
+        $\rightarrow$ Beobachtung: $(\tau, \delta)$
+\end{itemize}
+
 \subsection{Ekliptikales System}
+\begin{description}
+    \item[ekliptikale Länge] $\lambda$
+    \item[ekliptikale Breite] $\beta$
+\end{description}
+\[ \varepsilon = 23\degree 27\arcsecond \]
+
+\begin{center}
+    \begin{tikzpicture}[scale=4,tdplot_main_coords]
+        \pgfmathsetmacro{\rvec}{0.8}
+        \pgfmathsetmacro{\lvec}{80}
+        \pgfmathsetmacro{\bvec}{20}
+
+        \coordinate (O) at (0,0,0);
+        \tdplotsetcoord{S}{\rvec}{\bvec}{\lvec}
+        \tdplotsetcoord{n_e}{1.5}{23.4}{0}
+
+        \draw [->, thick] (O) -- (1, 0, 0) node[anchor=north east] {$\vec n_{\vernal}$};
+        \draw [->, thick] (O) -- (0, 1, 0) node[anchor=north west] {$(\vec n_b \times \vec n_{\vernal})$};
+        \draw [->, thick] (O) -- (0, 0, 1) node[anchor=south] {$\vec n_b$};
+
+        \tdplotsetrotatedcoords{60}{40}{30}
+
+        \tdplotdrawarc[dashed]{(O)}{1.5}{0}{360}{anchor=south west}{Äquator}
+        \draw [->] (O) -- (S);
+        \draw [->] (O) -- (n_e) node [anchor=south east] {$\vec n_e$};
+        \draw [dotted] (O) -- (Sxy);
+        \draw [dotted] (Sxy) -- (S);
+        \tdplotdrawarc[dotted]{(O)}{0.21}{0}{\lvec}{anchor=south east}{$\lambda$}
+        \tdplotsetthetaplanecoords{\lvec}
+        \tdplotdrawarc[dotted, tdplot_rotated_coords]{(O)}{0.2}{\bvec}{90}{anchor=30}{$\beta$}
+        \tdplotsetthetaplanecoords{0}
+        \tdplotdrawarc[dashed, tdplot_rotated_coords]{(O)}{0.5}{0}{23.4}{anchor=north}{$\varepsilon$}
+    \end{tikzpicture}
+    \[ \vec n_z = \sin \delta \cdot \vec n_e + \cos \delta \cdot \cos \alpha \cdot \vec n_1 + \cos \delta \cdot \sin \alpha \cdot \vec n_2 \]
+\end{center}
+
 \subsection{Galaktische Koordinaten}
+\begin{center}
+    \begin{tikzpicture}[scale=4,tdplot_main_coords]
+        \pgfmathsetmacro{\rvec}{0.8}
+        \pgfmathsetmacro{\lvec}{115}
+        \pgfmathsetmacro{\bvec}{70}
+
+        \coordinate (O) at (0,0,0);
+        \coordinate (GZ) at (0,1,0);
+        \tdplotsetcoord{S}{\rvec}{\bvec}{\lvec}
+        \tdplotsetcoord{n_e}{1.5}{23.4}{0}
+
+        \tdplotsetrotatedcoords{60}{40}{30}
+
+        \tdplotdrawarc{(GZ)}{1.5}{0}{360}{anchor=south west}{}
+        \node at (O) {$\astrosun$};
+        \draw [thick] (O) -- (GZ);
+        \node at (GZ) {$\circ$};
+        \node [anchor=west] at (GZ) {$GZ$};
+        \node [anchor=north] at (GZ) {Sagitarius A$^*$};
+        \draw [->] (O) -- (S) node {$\star$};
+        \draw [->] (GZ) -- (0,1,1);
+        \draw [dotted] (O) -- (Sxy);
+        \draw [dotted] (Sxy) -- (S);
+        \tdplotdrawarc[dotted]{(O)}{0.7}{90}{\lvec}{anchor=east}{$l$}
+        \tdplotsetthetaplanecoords{\lvec}
+        \tdplotdrawarc[dotted, tdplot_rotated_coords]{(O)}{0.6}{\bvec}{90}{anchor=30}{$b$}
+    \end{tikzpicture}
+\end{center}
+
+\paragraph{Galaktisches Zentrum (GZ)}
+\begin{align*}
+    \alpha &= 17^\mathrm{h}42^\mathrm{m}25^\second \\
+    \delta &= -28\degree 55\arcminute
+\end{align*}
 
 \section{Bahnen der Himmelskörper im Horizontsystem}
+\begin{center}
+    \framebox{Erddrehung $\Rightarrow$ tägliche Bewegung}
+\end{center}
+\paragraph{Ausgezeichnete Punkte}
+\begin{itemize}
+    \item Aufgang und Untergang:
+        \begin{itemize}
+            \item Parallelkreis-Horizont
+            \item Schnittpunkt
+        \end{itemize}
+    \item obere Kulmination: $h_1 = 90\degree - |b - \delta|$
+    \item untere Kulmination: $h_1 = -90\degree + |b + \delta|$
+\end{itemize}
+
+\paragraph{Speziell}
+\begin{itemize}
+    \item Zirkumpolare Sterne: $\delta > 90\degree - |b|$
+    \item nie sichtbar: $\delta < -90\degree + |b|$
+\end{itemize}
+
+\paragraph{Änderung der Höhe mit der Zeit}
+\[ h(t) = \arcsin(\sin b \sin \delta + \cos b \cos \delta \cos \tau) \]
+
+\paragraph{Näherung} ($h$ klein)
+\[ h \approx \delta + (90\degree - b) \cos \tau \]
