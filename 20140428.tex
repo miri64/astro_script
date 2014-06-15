@@ -99,7 +99,7 @@
 \begin{description}
     \item[Addition \autoref{eq:newton_two_body}]
         \begin{align*}
-            m_1\vec{r}_1 + m_2\vec{r}_2 &= \frac{d^2}{dt^2} (m_1 \vec{r}_1 + m_2 \vec{r}_2) \\
+            m_1\ddot\vec{r}_1 + m_2\ddot\vec{r}_2 &= \frac{d^2}{dt^2} (m_1 \vec{r}_1 + m_2 \vec{r}_2) \\
                                       0 &= \frac{d^2}{dt^2} (m_1 \vec{r}_1 + m_2 \vec{r}_2)
         \end{align*}
         Differentialgleichung 2. Ordnung in der Zeit: $\int \cdots dt$
@@ -109,10 +109,9 @@
         3 Konstanten $\rightarrow$ Schwerpunktsatz
     \item[Subtraktion \autoref{eq:newton_two_body}]
         \begin{align*}
-            -\frac{G m_1 m_2 \vec r}{i m_2 r^3} - \frac{G m_1 m_2 \vec r}{m_1 r^3} &= \frac{\cancel{m_2} \ddot \vec{r}_2}{\cancel{m_2}} - \frac{\cancel{m_1} \ddot \vec{r}_1}{\cancel{m_1}} \\
-            \ddot \vec{r} = - \frac{G \vec r}{r^3} m && \text{d.h. $\ddot \vec{r} \| \vec r$ (Zentralkraft)} \tag{$| \vec r \times$}\\
-            \vec r \times \ddot \vec{r} = - \frac{Gm}{r^3} \underbrace{\vec r \times \vec r}_{= \vec 0} \\
-            \frac{d}{dt} \left(\vec r \times \dot{\vec{r}}\right) = \vec 0
+            -\frac{G m_1 \cancel{m_2} \vec r}{\cancel{m_2} r^3} - \frac{G \cancel{m_1} m_2 \vec r}{\cancel{m_1} r^3} &= \frac{\cancel{m_2} \ddot \vec{r}_2}{\cancel{m_2}} - \frac{\cancel{m_1} \ddot \vec{r}_1}{\cancel{m_1}} \\
+            \ddot \vec{r} &= - \frac{G \vec r}{r^3} m && \text{d.h. $\ddot \vec{r} \| \vec r$ (Zentralkraft)} \tag*{$| \vec r \times$}\\
+            \vec r \times \ddot \vec{r} &= - \frac{Gm}{r^3} \underbrace{\vec r \times \vec r}_{= \vec 0} = \vec 0 = \frac{d}{dt} \left(\vec r \times \dot{\vec{r}}\right)
         \end{align*}
         Differentialgleichung 1. Ordnung in der Zeit\\[1em]
         \color{OliveGreen}
@@ -128,25 +127,25 @@
         $\Leftrightarrow$ Drehimpulserhaltung\\
         $\Leftrightarrow \dot{\vec{L}} = 0$\\
         $\Leftrightarrow \dot{\vec{L}} = \textbf{const}$\\
-        Aus der Addition von \autoref{eq:newton_two_body} mit $\vec{r}_2$ bzw. $\vec{r}_1$ folgt:
+        Aus der Addition von \autoref{eq:newton_two_body} mit $\dot\vec{r}_2$ bzw. $\dot\vec{r}_1$ folgt:
         \begin{align*}
             m_1 \langle\dot{\vec{r}}_1, \ddot{\vec{r}}_1\rangle + m_2 \langle\dot{\vec{r}}_2, \ddot{\vec{r}}_2\rangle 
-                &= \frac{Gm_1m_2}{r^3} \left(\langle\vec{r}, \vec{r}_1\rangle - \langle\vec{r}, \vec{r}_2\rangle\right)\\
-                &= \frac{Gm_1m_2}{r^3} (\underbrace{\langle\vec{r}_2 - \vec{r}_1, \vec{r}_1\rangle - \langle\vec{r}_2 - \vec{r}_1, \vec{r}_2\rangle}_{?})\\
+                &= \frac{Gm_1m_2}{r^3} \left(\langle\vec{r}, \dot\vec{r}_1\rangle - \langle\vec{r}, \dot\vec{r}_2\rangle\right)\\
+                &= \frac{Gm_1m_2}{r^3} (\underbrace{\langle\vec{r}_2 - \vec{r}_1, \dot\vec{r}_1\rangle - \langle\vec{r}_2 - \vec{r}_1, \dot\vec{r}_2\rangle}_{?})\\
         \end{align*}
         \color{OliveGreen}
         \textbf{Nebenrechnung:} $i \in {1,2}$
         \[\frac{d}{dt}\dot{\vec{r}}_i^2 = \langle2\dot{\vec{r}}_i, \ddot{\vec{r}}_i\rangle \tag{Kettenregel}\]
         \color{black}
         \begin{align*}
-            \frac{d}{dt}(\vec{r}_2 - \vec{r}_1) &= \langle2(\vec{r}_2 - \vec{r}_1), \dot{\vec{r}}_2 - \vec{r}_1\rangle\\ 
-                                                &= -2 \left(\langle(\vec{r}_2 - \vec{r}_1), \dot{\vec{r}}_1\rangle - \langle(\vec{r}_2 - \vec{r}_1), \vec{r}_2\rangle\right)\\
-                                                &= \frac{d}{dt} r^2
+            \frac{d}{dt}(\vec{r}_2 - \vec{r}_1) &= \langle2(\vec{r}_2 - \vec{r}_1), \dot{\vec{r}}_2 - \dot\vec{r}_1\rangle\\ 
+                                                &= -2 \left(\langle(\vec{r}_2 - \vec{r}_1), \dot{\vec{r}}_1\rangle - \langle(\vec{r}_2 - \vec{r}_1), \dot\vec{r}_2\rangle\right)\\
+                                                &= \frac{d}{dt} \dot\vec r^2
         \end{align*}
         Damit gilt:
         \begin{align*}
-            \frac{d}{dt} \sum\limits_{i = 1}^{2} \frac{m_i}{2} \dot r^2 &= -\frac{Gm_1m_2}{2r^3} \frac{d}{dt} r^2\\
-                                                                        &= -\frac{Gm_1m_2}{2r^1} \underbrace{\frac{1}{r} \frac{d}{dt} r^2}_{?} \tag{skalare Gleichung}
+            \frac{d}{dt} \sum\limits_{i = 1}^{2} \frac{m_i}{2} \dot\vec r^2 &= -\frac{Gm_1m_2}{2r^3} \frac{d}{dt} r^2\\
+                                                                        &= -\frac{Gm_1m_2}{2r^2} \underbrace{\frac{1}{r} \frac{d}{dt} r^2}_{?} \tag{skalare Gleichung}
         \end{align*}
         \color{OliveGreen}
         \textbf{Nebenrechnung:}
@@ -156,7 +155,7 @@
             \text{\autoref{eq:newton_nr_1} + \autoref{eq:newton_nr_2}:}\quad \frac{1}{r} \frac{d}{dt} r^2 &= -2r^2 \frac{d}{dt}\left(\frac{1}{r}\right)
         \end{align}
         \color{black}
-        Daris folgt: Differentialgleichungssystem
+        Daraus folgt: Differentialgleichungssystem
         \begin{align*}
             \frac{d}{dt}\left(\sum\limits_{i=1}^{2} \frac{m_i}{2} \dot r^2_i\right) &= \cancel{-}\frac{Gm_1m_2}{\cancel{2r^2}} \left[\cancel{-}\cancel{2r^2}\frac{d}{dt} \left(\frac{1}{r}\right)\right]\\
                                 &= Gm_1m_2 \frac{d}{dt} \left(\frac{1}{r}\right)

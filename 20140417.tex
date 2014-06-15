@@ -100,7 +100,7 @@ $\hookrightarrow$ 1. Nachteil: Ausgleich der Ortsabhängigkeit
         \[ \underbrace{\Theta(l)}_{\vec n_z} = \underbrace{\Theta_G}_{\vec n_z^G} - l \]
     \item[Sternzeit $\rightarrow$ Uhrzeit] Beispiel: $\Theta_G$
         \begin{align*}
-            \Theta_G(t) &= \underbrace{\Theta_G(0)}_{t = 0\,\mathrm{h}} + t\left(\frac{367.24}{365.24}\right) \\
+            \Theta_G(t) &= \underbrace{\Theta_G(0)}_{t = 0\,\mathrm{h}} + t\left(\frac{366.24}{365.24}\right) \\
             1\,\mathrm{a} &= \underbrace{366.24\,\mathrm{d}}_{\text{Sterntage}} = \underbrace{365.24\,\mathrm{d}}_{\text{normale Tage}} \\
                           &\Rightarrow \text{1 Sterntag ist kürzer als ein normaler Tag}
         \end{align*}
@@ -138,8 +138,7 @@ $\hookrightarrow$ 1. Nachteil: Ausgleich der Ortsabhängigkeit
 
         \tdplotsetrotatedcoords{60}{40}{30}
 
-        \tdplotdrawarc[dashed]{(O)}{1.5}{0}{360}{anchor=south west}{Äquator}
-        \draw [->] (O) -- (S);
+        \draw [->] (O) -- (S) node [anchor=south west] {$\vec n_z$};
         \draw [->] (O) -- (n_e) node [anchor=south east] {$\vec n_e$};
         \draw [dotted] (O) -- (Sxy);
         \draw [dotted] (Sxy) -- (S);
