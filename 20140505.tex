@@ -1,1 +1,30 @@
 \section{2-Körperproblem -- Kepler Gesetze}
+\paragraph{Skizze:}
+\begin{center}
+    \tdplotsetrotatedcoords{0}{0}{90}
+    \begin{tikzpicture}[scale=2,tdplot_rotated_coords]
+        \coordinate (O) at (0,0,0);
+        \coordinate [label=left:{$m_1$}] (m1) at (-1,1,0.5);
+        \coordinate [label=right:{$m_2$}] (m2) at (1,1,0.5);
+        \coordinate (S) at (0,1,0.5);
+
+        \draw [thick,->] (O) -- (1.2,0,0) node [anchor=north west] {$x$};
+        \draw [thick,->] (O) -- (0,1.2,0) node [anchor=south west] {$y$};
+        \draw [thick,->] (O) -- (0,0,1.2) node [anchor=south] {$z$};
+
+        \draw [->] (O) -- (m1) node [pos=0.5,anchor=north east] {$\vec r_1$};
+        \draw [->] (O) -- (m2) node [pos=0.5,anchor=north west] {$\vec r_2$};
+        \draw [->] (m1) -- (m2) node [pos=0.5, anchor=south] {$\vec r$};
+        \draw [->] (O) -- (S) node [pos=0.5, anchor=south] {$R$};
+    \end{tikzpicture}
+\end{center}
+
+\paragraph{DGL}
+\begin{align*}
+    m_1 \vec r_1 + m_2 \vec r_2 = \frac{d^2}{dt^2} (m_1 \vec r_1 + m_2 \vec r_2) &= \vec 0 \tag*{$| \dfrac{m}{m}$} \\
+    \Rightarrow m \frac{d^2}{dt^2} \underbrace{\left(\frac{m_1\vec r_1 + m_2 \vec r_2}{m}\right)}_{\mathclap{= \vec R = \frac{\vec C_2}{m} \text{für $\vec C_1 = \vec P_{\mathrm{ges}}$}}} = \vec 0 \Leftrightarrow m \ddot{\vec{R}} &= \vec 0
+\end{align*}
+\[ \boxed{m\ddot{\vec{R}} = \vec 0} \]
+\framebox{$\Rightarrow$ Referezsystem bzgl. Massenschwerpunkt muss ein Inertialsystem sein}
+
+$\Rightarrow$ \textbf{Wahl:} Koordinatenursprung im Schwerpunkt $\Leftrightarrow \vec{R} = \vec 0$
