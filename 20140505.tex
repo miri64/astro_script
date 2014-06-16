@@ -4,9 +4,9 @@
     \tdplotsetrotatedcoords{0}{0}{90}
     \begin{tikzpicture}[scale=2,tdplot_rotated_coords]
         \coordinate (O) at (0,0,0);
-        \coordinate [label=left:{$m_1$}] (m1) at (-1,1,0.5);
-        \coordinate [label=right:{$m_2$}] (m2) at (1,1,0.5);
-        \coordinate (S) at (0,1,0.5);
+        \coordinate [label=left:{$m_1$}] (m1) at (-1,1,-0.2);
+        \coordinate [label=right:{$m_2$}] (m2) at (1,1.2,0.4);
+        \coordinate (S) at (0,1.1,0.1);
 
         \draw [thick,->] (O) -- (1.2,0,0) node [anchor=north west] {$x$};
         \draw [thick,->] (O) -- (0,1.2,0) node [anchor=south west] {$y$};
@@ -15,7 +15,7 @@
         \draw [->] (O) -- (m1) node [pos=0.5,anchor=north east] {$\vec r_1$};
         \draw [->] (O) -- (m2) node [pos=0.5,anchor=north west] {$\vec r_2$};
         \draw [->] (m1) -- (m2) node [pos=0.5, anchor=south] {$\vec r$};
-        \draw [->] (O) -- (S) node [pos=0.5, anchor=south] {$R$};
+        \draw [->] (O) -- (S) node [pos=0.5, anchor=east] {$R$};
     \end{tikzpicture}
 \end{center}
 
