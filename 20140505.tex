@@ -247,3 +247,34 @@ Gesucht: $A = \mathbf{const} \Leftrightarrow \dot A = 0$
 
 \paragraph{Betrachte} Fläche der Ellipse $F$
 
+mit Umlaufperiode $T$
+\begin{align*}
+    F &= \pi a b = \int\limits_0^T A\ dt = A \int\limits_0^T\ dt = AT\\
+    AT &= \frac{L_ST}{2} = \pi a \underbrace{a \sqrt{1 - \varepsilon^2}}_{= b} = \pi a \sqrt a \underbrace{\sqrt{a (1 - \varepsilon^2)}}_{= \sqrt{P}}
+\end{align*}
+\[ \boxed{P = a(1-\varepsilon^2) = \frac{L_S^2}{\mu^2 m G}} \]
+\begin{align*}
+    \Rightarrow AT &= \frac{\cancel{L_S}T}{2 \cancel{\mu}} = \pi a \sqrt{a} \frac{\cancel{L_S}}{\cancel{\mu} \sqrt{mG}} = \frac{a^{\frac{3}{2}} \pi}{\sqrt{mG}} \tag*{$| (\cdot)^2$}\\
+    \Rightarrow \frac{T^2}{4} &= \frac{a^3\pi^2}{m G} \\
+\end{align*}
+\[ \Rightarrow \boxed{\frac{T^2}{a^3} = \frac{4\pi^2}{mG} = \frac{4 \pi^2}{(m_1 + m_2) G} = \mathbf{const}} \tag{3. \textsc{Kepler}'sches Gesetz} \]
+
+\paragraph{Achtung} \[\frac{T_1^2}{a_1^2} \approx \frac{T_2^2}{a_2^2}; 1, 2 \text{Planeten}\]
+gilt nur, wenn die Planetenmassen gegen Sonnenmasse vernachlässigbar sind.
+
+\paragraph{Erinnerung} $m = \mathcal M_{\astrosun} + m_{\mathrm{Pl}}$\\
+    $\Rightarrow$ Schwerpunkt \emph{nicht} in Sonnenmitte
+
+\subsubsection{Lage des Schwerpunktes}
+\paragraph{Anmerkung} Koordinatenursprung im Sonnenzentrum $\vec r_{\astrosun} = \vec 0$
+\[ \Rightarrow \vec R_S = \frac{\vec r_{\mathrm{Pl}} \cdot m_{\mathrm{Pl}}}{m} \]
+\begin{enumerate}[a)]
+    \item \textbf{Erde ($\mathbf{\earth}$):} $r_{\earth} = 1\,\mathrm{AU} \approx 1.5 \cdot 10^{13}\,\metre; R_{\astrosun} = 7 \cdot 10^{10}\,\metre$
+        \begin{align*}
+            \mathcal{M}_{\astrosun} &= 2 \cdot 10^{33}\,\gram\\
+            m_{\earth} &= 6 \cdot 10^{27}\,\gram\\
+            |\vec R_S|_{\earth}^{\astrosun} &= \frac{1.5 \cdot 10^{13} \cdot 6 \cdot 10^{27}}{2 \cdot 10^{23}}\,\metre \approx 4.5 \cdot 10^7\,\metre \approx 6 \cdot 10^{-4} \cdot R_{\astrosun}
+        \end{align*}
+    \item \textbf{Jupiter ($\mathbf{\jupiter}$):} $r_{\jupiter} = 5\,\mathrm{AU} \approx 7.8 \cdot 10^{23}\,\metre; m_{\jupiter} = 10^{-3} \cdot \mathcal M_{\astrosun}$
+        \[ |\vec R_S|_{\jupiter}^{\astrosun} \approx 7.5 \cdot 10^{10}\,\metre \approx 1 \cdot R_{\astrosun} \]
+\end{enumerate}
