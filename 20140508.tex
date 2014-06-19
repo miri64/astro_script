@@ -143,5 +143,44 @@ Es gilt:
 \part{Planeten}
 \chapter{Physikalische Eigenschaften des Sonnensystems}
 \section{Stabilität der Atmosphäre}
+\paragraph{Frage} Warum cerliert ein Planet seine Atmosphäre?
+\paragraph{Einfache Abschätzung} Energiegleichgewicht
+\[ E_{\mathrm{kin}} = E_{\mathrm{grav}} \]
+$\Rightarrow$ Entweichgeswindigkeit eines Teilchens mit der Masse $m$ an der 
+              Planetenoberfläche
+\[ \frac{\cancel{m}}{2} v_{\mathrm{esc}}^2 = \frac{G \cancel{m} m_{\mathrm{Pl}}}{R_{\mathrm{Pl}}} \]
+
+\[ \Rightarrow v_{\mathrm{esc}} = \sqrt{\frac{2 G m_{\mathrm{Pl}}}{R_{\mathrm{Pl}}}} \]
+
+Geschwindigkeitsverteilungsfunktion eines Gases
+\[ f(\vec v)\ dv^3: \int f (\vec v)\ dv^3 = 1 \tag{Normierung} \]
+
+z. B. \textbf{\textsc{Maxwell}-Geschwindigkeitsverteilung}
+\[ f(\vec v) = \left(\frac{m}{2 \pi T}\right)^{\frac{3}{2}} e^{-\frac{mv^2}{2} \per (k T)} \]
+
+\[ \Rightarrow \frac{m v_{\mathrm{th}}^2}{2} \approx kT \Rightarrow \text{Thermische Geschwindigkeit $v_{\mathrm{th}} = \sqrt{\dfrac{2 k T}{m}}$}\]
+
+\paragraph{Bruchteil der entweichenden Teilchen $\delta$}
+\begin{align*}
+    \delta &:= \int\limits_{\mathclap{\vec k \cdot \vec v > v_{\mathrm{esc}}}} f(\vec v)\ dv^3 \tag{$\vec k$: Normalvektor der Atmosphäre}
+\end{align*}
+
+\paragraph{Vorteil} $v_{\mathrm{esc}}$ klein: $m_{\mathrm{Pl}}$ klein, $R_{\mathrm{Pl}}$ groß \\
+    $f(\vec v)$ groß: $T$ groß
+
+\begin{definition}
+    Stabilitätsparameter
+    \[ \Gamma^2 := \left(\frac{v_{\mathrm{th}}}{v_{\mathrm{esc}}}\right)^2 = \left(\frac{kTR_{\mathrm{Pl}}}{G m_{\mathrm{Pl}} m}\right) \]
+    \begin{tabular}{r@{:\ }l}
+        $\Gamma \gg 1$ & instabil \\
+        $\Gamma \ll 1$ & stabil
+    \end{tabular}
+\end{definition}
+
+\paragraph{Planetenatmosphäre} (Thermischer Verlust) \\
+$\Gamma$-Reihenfolge: Jupiter $>$ Saturn $>$ Neptun $>$ Uranus $>$ Erde $>$
+Venus $>$ Mars $>$ Pluto $>$ Triton $>$ \emph{Titan} $>$ Io $>$ ... $>$ \emph{Merkur}
+$>$ \emph{Mond} $>$ ...
+
 \section{Energiehaushalt und Atmosphärentemperatur}
 
