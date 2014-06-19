@@ -1,5 +1,144 @@
 \section{Bemerkungen zu Störeffekten}
+\paragraph{Problem} $N$-Körperproblem nicht allgemein lösbar!
+
+\paragraph{Methode}
+\begin{itemize}
+    \item Ansatz einenr Störungstheorie
+    \item numerische Behandlung des $N$-Körperproblems
+    \item \sout{statistische Methoden}
+\end{itemize}
+
+\paragraph{Aller einfachster Ansatz}
+\textbf{Situation:}
+\begin{center}
+    \begin{tikzpicture}
+        \coordinate (M) at (0, 0);
+        \node [above] at (M) {$\mathcal{M}$};
+        \coordinate (m) at (2, 0);
+        \node [above] at (m) {$m$};
+        \coordinate (mS) at (5, 0);
+        \node [above] at (mS) {$m_S$};
+        \filldraw(M) circle (1pt);
+        \filldraw(m) circle (1pt);
+        \filldraw(mS) circle (1pt);
+
+        \draw (M) -- (m) node [pos=0.5, above] {$a$};
+        \draw (m) -- (mS) node [pos=0.5, above] {$d$};
+        \draw [->, >=stealth'] (6,1) node [right] {störende Masse} -- (5.5,0.5);
+    \end{tikzpicture}
+\end{center}
+
+\paragraph{Anmerkung} kleine Störung
+
+\paragraph{Abschätzung} maximaler Einfluss (Konjunktion / Opposition)
+
+\paragraph{Beschleunigungen}
+\[ b_m = \frac{G m_S}{d^2}; \qquad b_{\mathcal{M}} = \frac{G m_S}{(a + d)^2} \]
+
+$\Rightarrow$ Störbeschleunigung: $\Delta b = b_m - b_{\mathcal M} = G m_S (\frac{1}{d^2} - \frac{1}{(d + a)^2})$
+
+$a \ll d$: Reihenentwicklung
+\[ \boxed{\text{Taylorentwicklung:} f(x) = f(x_0) + f'(x_0) \cdot (x - x_0) + \dots} \]
+
+\begin{align*}
+    \frac{1}{x^2} &\approx \frac{1}{x_0^2} - \frac{2}{x_0^3} (x - x_0) + 0, \text{mit} x = a + d; x_0 = d \\
+    \Rightarrow \frac{1}{(a+d)^2} &= \frac{1}{d^2} - \frac{2}{d^3} (a + \cancel{d} - \cancel{d}) + 0 \\
+    \Rightarrow a b &= \frac{Gm_S 2 a}{d^3} = \frac{2 G \mathcal{M}}{a^2} \cdot f
+\end{align*}
+
+\begin{definition}
+    Störfaktor $f$: \[ \boxed{f := \frac{m_S}{\mathcal{M}} \cdot \left(\frac{a}{d}\right)^3} \]
+\end{definition}
+
+je größer $f$ $\Rightarrow$ wichtiger Einfluss auf Bahnen
+\begin{center}
+\begin{tabular}{ll}
+    Erde $\xrightarrow{\text{durch}}$ Venus: & $f \approx \dfrac{1}{37000}$ \\
+    Erde $\xrightarrow{\text{durch}}$ Jupiter: & $f \approx \dfrac{1}{53000}$ \\
+    Erde $\xrightarrow{\text{durch}}$ Saturn: & $f \approx \dfrac{1}{360}$
+\end{tabular}
+\end{center}
+
+$\rightarrow$ Numerische Simulation: $N$-body simulation
+
 \section{Virialsatz}
+\begin{framed}
+    \begin{theorem}
+        Die Gesamtenergie $E$ eines gravitativ gebundenen Systems $(E < 0)$ im 
+        Gleichgewicht ist immer gleich der Hälfte der zeitgemittelten potentiellen
+        Energie $\langle E_{\mathrm{pot}} \rangle$ des Systems:
+        \[ E = \frac{\langle E_{\mathrm{pot}} \rangle}{2} \Leftrightarrow \langle E_{\mathrm{kin}} \rangle = - \frac{\langle E_{\mathrm{pot}} \rangle}{2}\]
+    \end{theorem}
+\end{framed}
+
+\paragraph{Betrachte}
+\begin{align*}
+    Q &\underset{\mathclap{
+        \begin{array}{c}
+            \uparrow \\
+            \text{Summe über alle Teilchen $i$ des Systems}
+        \end{array}
+        }}{=} \sum\limits_{i} \langle\vec p_i, \vec r_i\rangle = \sum\limits_{i} m_i \frac{d}{dt} \langle\vec r_i, \vec r_i\rangle\\
+        \Rightarrow \frac{dQ}{dt} &= \sum\limits_{i} (\langle\dot{\vec{p}}_i, \vec r\rangle + \langle\vec p, \dot{\vec{r}}_i\rangle)
+        = \frac{d}{dt} \sum\limits_i m_i \underbrace{\langle\dot{\vec{r}}_i, \vec{r}_i\rangle}_{= ?}
+\end{align*}
+
+\color{OliveGreen}
+\textbf{Nebenrechnung:}
+\begin{align*}
+    \frac{d}{dt} \langle\vec{r}_i, \vec{r}_i\rangle &= 2 \langle\vec{r}_i, \dot{\vec{r}}_i\rangle = \frac{d}{dt} (r_i)^2 \\
+    \Rightarrow \langle\vec{r}_i, \dot{\vec{r}}_i\rangle &= \frac{1}{2} \frac{d}{dt} r_i^2 \\
+\color{black}
+\Rightarrow \dot Q &\color{black}=\frac{d}{dt} \sum_i \frac{1}{2} \frac{d}{dt} (m_i r_i^2) = \frac{1}{2} \frac{d^2}{dt^2} \underbrace{\sum\limits_i (m_i r_i^2)}_{FI}
+\end{align*}
+\color{black}
+$I$: Trägheitsmement der Teilchen des Systems
+\begin{align*}
+    \Rightarrow \dot Q &= \frac{1}{2} \ddot I    \tag*{$| - \sum\limits_i \langle \vec p_i, \dot{\vec{r}}_i\rangle$} \\
+    \Rightarrow \frac{1}{2}\ddot I - \sum\limits_i \langle \vec p_i, \dot{\vec{r}}_i\rangle &= \sum\limits_i \langle \dot{\vec{p}}_i, \vec{r}_i\rangle = \underbrace{\sum\limits_i \langle\vec F_i \cdot \vec r_i\rangle}_{\text{\textsc{Clausius}' Virial}} \\
+    \Rightarrow \frac{1}{2}\ddot I - \underbrace{\sum\limits_i m_i \langle \dot{\vec{r_i}}, \dot{\vec{r}}_i\rangle}_{= 2 E_{\mathrm{kin}}} &= \sum\limits_i \langle \vec{F}_i, \vec{r}_i\rangle \\
+\end{align*}
+
+$F_i$: Summe aller auf Teilchen $i$ wirkenden Kräfte
+
+\paragraph{Betrachte} Gravitativ gebundenes System bestehend aus vielen Teilen
+
+Es gilt:
+\begin{align*}
+    \sum\limits_i \langle\vec F_i, \vec r_i\rangle &= \sum\limits_i \left\langle\sum\limits_{j \neq i} \vec F_{ij}, \underbrace{\vec r_i}_{\mathclap{\qquad\qquad= \frac{1}{2} (\vec r_i - \vec r_j) + \frac{1}{2} (\vec r_i + \vec r_j)}}\right\rangle\\
+                &= \frac{1}{2} \sum\limits_i \left\langle\sum\limits_{j \neq i} \vec F_{ij}, \underbrace{\vec r_i - \vec r_j}_{=: - \vec r_{ij}}\right\rangle + \underbrace{\frac{1}{2} \sum\limits_i \left\langle\sum\limits_{j \neq i} \vec F_{ij}, \vec r_i + \vec r_j\right\rangle}_{= 0; \vec F_{ij} = -\vec F_{ji}} \\
+    \vec F_{ij} &= \left(\frac{Gm_im_j}{r_{ij}^2}\right) \cdot \vec r_{ij} \tag{Gravitationskraft $i \Leftrightarrow j$}\\
+    \Rightarrow \sum\limits_i \langle\vec F_i, \vec r_i\rangle &= -\frac{1}{2} \sum\limits_i\left(\sum\limits_{j \neq i} \left(\frac{Gm_im_j}{r_{ij}^{\cancel{3}}}\right) \underbrace{\langle\vec r_{ij}, \vec r_{ij}\rangle}_{= \cancel{r_{ij}^2}}\right)\\
+        &= -\frac{1}{2} \sum\limits_i \left(\sum\limits_{j \neq i} \frac{G m_i m_j}{r_{ij}}\right) = \frac{1}{2} \sum\limits_i \sum\limits_{j \neq i} E_{\mathrm{pot}_{ij}} = E_{\mathrm{pot}}\\
+    \underset{=0}{\cancel{\frac{1}{2} \langle\ddot I\rangle}} - 2 \langle E_{\mathrm{kin}} &= \langle E_{\mathrm{pot}}\rangle
+\end{align*}
+
+\paragraph{Zeitmittlung} \[\langle \cdot \rangle = \frac{1}{2} \int\limits_0 \cdot\ dt\]
+
+\color{OliveGreen}
+\textbf{Nebenrechnung:}
+\begin{itemize}
+    \item $\langle \ddot I \rangle = \frac{1}{2} \int\limits_0^{\tau} \ddot I\ dt = \dot I |_0^{\tau} = \underbrace{\dot I(\tau) - \dot I(0)}_{=0}$ (periodische Orbit-Mittlung über eine Periode)
+    \item System im Gleichgewicht: $I = \mathbf{const} \Rightarrow \dot I = 0$
+\end{itemize}
+\color{black}
+
+
+\begin{align*}
+    \Rightarrow \langle E_{\mathrm{pot}}\rangle &= -2 \langle E_{\mathrm{kin}} \rangle \\
+    \text{oder}\qquad \langle E\rangle &= \langle E_{\mathrm{pot}} \rangle + \langle E_{\mathrm{kin}} \rangle = 
+    \langle E_{\mathrm{pot}} \rangle - \frac{1}{2} \langle E_{\mathrm{pot}} \rangle = \frac{\langle E_{\mathrm{pot}} \rangle}{2}
+\end{align*}
+
+\paragraph{Anwendung des Virialsatzes}
+\begin{itemize}
+    \item ideales Gas
+    \item Kugelsternhaufen
+    \item Galaxiehaufen
+    \item Sternentstehung
+    \item Himmelsmechanik
+    \item ...
+\end{itemize}
 
 \part{Planeten}
 \chapter{Physikalische Eigenschaften des Sonnensystems}
