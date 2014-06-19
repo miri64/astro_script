@@ -183,4 +183,81 @@ Venus $>$ Mars $>$ Pluto $>$ Triton $>$ \emph{Titan} $>$ Io $>$ ... $>$ \emph{Me
 $>$ \emph{Mond} $>$ ...
 
 \section{Energiehaushalt und Atmosphärentemperatur}
+\paragraph{Anmerkung} Strahlungsgleichgewicht, Schwarzkörper
+\[ \boxed{\text{Abstrahlung} = \underset{\begin{matrix}\Uparrow\\\text{Sonne}\end{matrix}}{\text{Einstrahlung}}} \]
+ 
+\subsubsection{Energieabstrahlung der Sonne}
+\[ L_{\astrosun} = \underbrace{4 \pi R_{\astrosun}^2}_{\text{Oberfläche}} \cdot \underset{\begin{matrix}\text{Strahlungsfluss}\\\text{[Energie / Zeit / Fläche]}\end{matrix}}{F_{\astrosun} (R_{\astrosun})} \leftarrow \text{Leuchtkraft der Sonne [Energie / Zeit]} \]
 
+\begin{center}
+    \begin{tikzpicture}[tdplot_main_coords]
+        \tdplotdrawarc[dashed]{(0,0,0)}{2}{90}{270}{}{};
+        \draw [->] (0,0,0) -- (0,2,0) node [above, pos=0.5] {$R_{\astrosun}$};
+        \shade[ball color=red!10!yellow, opacity=0.50] (0,0,0) circle (2cm);
+        \draw (0,0,0) circle (2cm);
+
+        \tdplotdrawarc{(0,0,0)}{2}{-90}{90}{}{};
+    \end{tikzpicture}
+\end{center}
+
+Schwarzkörper:
+\[ B_{\nu}(T) \xrightarrow{\int\ d\nu} \boxed{F_{\astrosun} = \sigma T^4} \tag{Stefan-Boltzmann-Gesetz} \]
+$\sigma$: Stefan-Boltzmann-Gesetz
+\[ E_{\mathrm{ph}} = h\nu \]
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw (0,0) -- (7.4,0);
+
+        \draw [domain=-90:90] plot ({cos(\x)}, {sin(\x)});
+        \draw [domain=-41.81:41.81] plot ({3*cos(\x)}, {3*sin(\x)});
+        \draw [domain=-16.6:16.6] plot ({7*cos(\x)}, {7*sin(\x)});
+        \node (r) at (7,0) [anchor=south west] {$r$};
+        \draw [->] (0,0) -- (41:1) node [pos=0.5] {$R_{\astrosun}$};
+    \end{tikzpicture}
+\end{center}
+
+\paragraph{Energieerhaltung}
+\begin{align*}
+    L_{\astrosun} &= \cancel{4 \pi} R_{\astrosun}^2 F_{\astrosun} = \cancel{4 \pi} r^2 \boxed{f_{\astrosun}(r)}\\
+f_{\astrosun}(r) &= F_{\astrosun} (R_{\astrosun}) \cdot \underbrace{\left(\frac{R_{\astrosun}}{r}\right)^2}_{\mathclap{\text{geometrische Verdünnung}}} \tag{Am Ort $r$ ankommender Strahlungsfluss}\\
+    f_{\astrosun}(1\,\mathrm{AU}) &= 1.37\,\kilo\watt\metre^{-2} \tag{Solarkonstante}
+\end{align*}
+
+\paragraph{Absorbierte Energie}
+\begin{align*}
+L_{\mathrm{abs}} &= f_{\astrosun}(r) \cdot \underset{\mathclap{\begin{matrix}\uparrow\\\text{absorbierende Fläche}\end{matrix}}}{\mathcal{F}_{\mathrm{abs}}} \cdot (1 - A) + \underbrace{4 \pi R_{\mathrm{Pl}} f_Q}_{\mathclap{\text{innere Energiequelle}}}\\
+    \text{Albedo $A$:}\ A &= \frac{\text{gestreutes / reflektiertes Licht}}{\text{einfallendes Licht}}
+\end{align*}
+
+\paragraph{Emittierte Energie}
+\begin{align*}
+L_{\mathrm{em}} &= f_{\mathrm{em}} \cdot \mathcal{F}_{\mathrm{em}} = \underbrace{\sigma \cdot T_{\mathrm{Pl}}^4}_{\mathclap{\begin{matrix}\downarrow\\\text{Abstrahlung erfolgt in $\mathbb{R}$}\end{matrix}}}\cdot \mathcal{F}_{\mathrm{em}} \cdot e^{- \tau_{\mathrm{IR}}}
+\end{align*}
+$\tau_{\mathrm{IR}}$: optische Tiefe
+
+Gegeben: $L_{\mathrm{em}} = L_{\mathrm{abs}}$
+\[ \cancel{\sigma} \cdot \left(\frac{R_{\astrosun}}{r}\right)^2 \cdot T_{\astrosun}^4 \cdot \mathcal{F}_{\mathrm{abs}} \cdot (1-A) + 4 \pi R_{\mathrm{Pl}} f_Q = \cancel{\sigma} \cdot T_{\mathrm{Pl}}^4 \cdot \mathcal{F}_{\mathrm{E}} \cdot e^{\tau_{IR}} \]
+
+Gesucht: Strahlungsgleichgewichtstemperatur des Planeten ($f_Q = 0, \tau_{IR} = 0$)
+\[ \boxed{T_{\mathrm{Pl}^2} = (1 - A) \left(\frac{\mathcal{F}_{\mathrm{abs}}}{\mathcal{F}_{\mathrm{em}}}\right) \left(\frac{R_{\astrosun}}{r}\right)^2 T_{\astrosun}^4} \]
+
+Annahme:
+\begin{align*}
+    \mathcal F_{\mathrm{abs}} &= \pi R_{\mathrm{Pl}}^2 \\
+    \mathcal F_{\mathrm{em}} &= \begin{cases}
+        4 \pi R_{\mathrm{Pl}}^2, & \text{schnelle Rotation} \\
+        2 \pi R_{\mathrm{Pl}}^2, & \text{langsame Rotation}
+    \end{cases}
+\end{align*}
+
+Beispiel: Erde $A \approx 0.3$, $f_Q \approx 0.06 \watt\metre^{-2} \approx 10^{-4} f_{\astrosun}$
+\begin{align*}
+    r &= 1\,\mathrm{AU} & R_{\astrosun} &= 696000\,\kilo\metre & \\
+    L_{\astrosun} &= 3.85 \cdot 10^{26}\,\watt & T_{\astrosun} &= 5780\,\kelvin
+\end{align*}
+\[ \Rightarrow T = \sqrt{3.787 \cdot 10^{-6}}\,T_{\astrosun} \approx 0.044\,T_{\astrosun} \approx 255\,\kelvin \]
+
+\paragraph{Folgerung} tatsächliche Planetentemperatur $T_{\mathrm{Pl}}$ größer
+als Strahlungsgleichgewichtstemperatur $T$
+\[ \Rightarrow \boxed{T_{\mathrm{Pl}} = T} \]
