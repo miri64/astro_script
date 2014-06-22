@@ -17,10 +17,10 @@ all : script.pdf
 
 script.pdf : script.tex *.tex $(IMG)
 	echo "$(IMG)"
-	@$(CC) "$<"
+	@$(CC) --shell-escape "$<"
 
 img/%.pdf : img/%.svg
 	@$(INKSCAPE) --without-gui --export-pdf="$@" "$<"
 
 clean :
-	@rm -f script.pdf img/*.pdf
+	@rm -f script.pdf img/*.pdf *.aux *.log *.toc
