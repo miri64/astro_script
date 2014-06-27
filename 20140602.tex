@@ -1,2 +1,75 @@
 \section{Interstellare Verfärbung}
+\paragraph{Ursache} Interstellare Materie / Speziell: Staubteilchen
+
+% TODO Graphic
+
+\begin{itemize}
+    \item Re-Emission bei $T_{\text{Staub}} \sim 10^2\,\kelvin \rightarrow$ IR ("`Rötung"')
+    \item isotrope Streuung (kleine Staubteilchen) $\rightarrow$ aus der Richtung gestreut
+\end{itemize}
+
+\paragraph{Verfärbung} Schwächung der scheinbaren Helligkeit
+\[ \Delta m_{\lambda} = A_{\lambda} \sim \frac{1}{\lambda} \]
+
+\paragraph{Beschreibung} Farbexzess $E$
+\[ E_{B-V} = \underset{\text{beobachtet}}{(B-V)_{\mathrm{obs}}} - \underbrace{(B-V)_0}_{\text{Eigenfarbe des Objekts}} = A_B - A_V \]
+
+Empirischer Zusammenhang: $A_V \approx (3.0 \pm 0.2)\,E_{B-V}$
+
+\section{Bolometrische Korrektur (B.C.)}
+! Sterne !
+
+% TODO Graphic
+
+\[ \boxed{B.C. = m_v - m_{\mathrm{bol}}} \]
+
+\framebox{Korrekturen werden aus Sternatmosphärenmodellen abgeleitet.}
+
+\section{Susammenhang: Absolute bolometrische Helligkeit $\leftrightarrow$ Leuchtkraft}
+\[ L_* = 4 \pi R_*^2 F_* \]
+
+\paragraph{Annahme} keine Verfärbung
+
+\begin{align*}
+    r = 10\,\parsec{:}\ f(10\,\parsec) &= F_*\left(\frac{R_*}{10\,\parsec}\right)^2 = \frac{L_*}{4 \pi \cancel{R_*^2}} \left(\frac{\cancel{R_*}}{10\,\parsec}\right)^2 \\
+    m_{\mathrm{bol}} (10\,\parsec) = M_{\mathrm{bol}}^{*} &= -2.5 \log f (10\,\parsec) + C \\
+                                                          &= -2.5 \log \left(\frac{f_* R_*^2}{(10\,\parsec)^2}\right) \\
+                                                          &= -2.5 \log (L_*) + 2.5 \cancel{\log(4\pi)} + \cancel{5} \underset{\approx 1}{\cancel{\log(10\,\parsec)}} + \cancel{C}
+\end{align*}
+
+Analog für Sonne:
+\begin{align*}
+    M_{\mathrm{bol}}^{\astrosun} &= -2.5 \log L_{\astrosun} + 2.5 \cancel{\log(4\pi)} + \cancel{5} + \cancel{C} \\
+    \Rightarrow M_{\mathrm{bol}}^* - M_{\mathrm{bol}}^{\astrosun} &= -2.5 \log\left(\frac{L_*}{L_{\astrosun}}\right) \\
+    M_{\mathrm{bol}}^{\astrosun} &= 4.72\magnitude \\
+    M_{\mathrm{bol}}^* &= 4.72\magnitude - 2.5\magnitude \log\left(\frac{L_*}{L_{\astrosun}}\right)
+\end{align*}
+
 \section{Spektralklassifikation und HR-Diagramm}
+\paragraph{Prinzip} Spektren werden in Klassen zusammengefasst
+
+\paragraph{Umrechnung nach Havard-Sequenz} $\rightarrow T_{\mathrm{eff}}$
+
+\[ O - B - A - F - G - K - \overbracket{M - L - T - Y}^{\mathclap{\text{Braune Zwerge}}} \]
+
+% TODO HRD
+
+\paragraph{Problem} HRD ist bezüglich Spektralklassen nicht eindeutig $\rightarrow$ Leuchtkraftklassen
+
+\subsubsection{Masse-Leuchtkraftbezeichnung auf der Hauptreihe}
+\[ \log\left(\frac{L_*}{L_{\astrosun}}\right) \sim \log \left(\frac{M_*}{M_{\astrosun}}\right) \]
+
+\[
+    \boxed{\log\left(\frac{L_*}{L_{\astrosun}}\right) = \begin{cases}
+        2 \log \left(\frac{M_*}{M_{\astrosun}}\right) - 0.4, & \text{sonst} \\
+        4 \log \left(\frac{M_*}{M_{\astrosun}}\right), & \text{für $M_* > 0.6 M_{\astrosun}$} \\
+    \end{cases}}
+\]
+
+% TODO Graph
+
+\subsubsection{Fundamentale Sternparameter}
+
+\[ \underbrace{\underbrace{L_*, T_*}_{R_*}, M_*}_{\text{Oberflächenbeschleunigung $g_* = \dfrac{GM_*}{R_*^2}$}}, \underset{\text{dynamische Elemente (Elementzusammensetzung -- Metallizität)}}{\{\epsilon_i\}} \]
+
+% next chapter

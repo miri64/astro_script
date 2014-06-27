@@ -79,4 +79,91 @@ $v = v_{\mathrm{th}}$:
 \part{Astronomische Beobachtungsgrößen}
 \chapter{Astronomische Spektroskopie}
 \section[Astronomische Helligskeitsysteme]{Astronomische Helligskeitsysteme (Bsp. Sterne)}
+am Beispiel Sterne
+
+% TODO Skizze
+
+\[ L_* = F_*(R_*) \cdot 4 \pi R_*^2 = f(r) \cdot 4 \pi r^2 = \mathbf{const} \]
+
+\[ \boxed{f(r) = F_*(R_*) \cdot \left(\frac{R_*}{r}\right)^2} \]
+
+Strahlungsfluss -- Beobarchtungsgröße $\rightarrow$ \emph{nicht} Intensität
+
+\paragraph{Ursache} keine räumliche Auflösung
+\[ \Delta m = 1\magnitude \]
+
+\framebox{Helligkeiten}: Größenklassen (Magnituden)
+
+% TODO Skala
+
+\begin{center}
+    Astronomie $\longleftrightarrow$ Physik
+\end{center}
+
+\fbox{ %
+    \begin{minipage}[h]{\textwidth} %
+        \begin{align*}
+            \Delta m = m_2 - m_1 &= -2.5\magnitude \log f_2 - \log f_1 \\
+                                 &= -2.5\magnitude \log\left(\frac{f_2}{f_1}\right)
+        \end{align*}
+    \end{minipage}
+}
+
+$\Rightarrow m = -2.5\magnitude \log f + C$
+
+Scheinbare Helligkeit: $m(r)$
+
+Absolute Helligkeit: $M := m(10\,\parsec) \leftarrow$ Referenzentfernung
+
+\subsubsection{Bolometrische Helligkeit}
+\[ m_{\mathrm{bol}}(r) = -2.5 \log \int\limits_0^{\infty} f_\nu(r)\ d\nu + C \]
+
+\subsubsection{Verschiedene Filterbereiche}
+\[ m_x(r) = -2.5 \log \int\limits_{0}^{\infty} f_{\nu}(r) \cdot \underset{\mathclap{\text{Filterfunktion}}}{\boxed{S_x(\nu)}}\ d\nu + C \]
+
+\begin{center}
+    \begin{tabular}{ccc}
+        $S_x(\nu)$      &                       & $m_x$ \\\hline
+        $1$             & bolometrisch          & $m_{\mathrm{bol}}$ \\
+        Auge            & visuell               & $m_v$ \\
+        V-Filter        & V-Filter              & $m_V$ \\
+        Fotoplatte      & Fotoplatte            & $m_{\mathrm{pg}}$ \\
+        $\vdots$        &                       & $\vdots$ \\\hline
+    \end{tabular}
+\end{center}
+
 \section{Filtersysteme}
+$\rightarrow$ Photometrie
+
+\textsc{Johnson}: U - B - V (ältestes/wichtigstes System)
+
+FWHM: $~100\,\nano\metre$ -- Breitbandfilter
+
+% TODO graphic
+
+\begin{itemize}
+    \item Filter schneidet Teil des Spektrums "`aus"'
+\end{itemize}
+
+$\Rightarrow$ \textbf{Farben} $m_U =: U; m_V =: V; m_B =: B; \dots$
+
+\fbox{%
+    \begin{minipage}{\textwidth}
+        \begin{definition}
+            Farbindex
+            \begin{align*}
+                U - B &= m_U - m_B \\
+                B - V &= m_B - m_V \\
+                \dots
+            \end{align*}
+        \end{definition}
+    \end{minipage}
+}
+
+\paragraph{Eichung des Farbsystems} Wega ($T_{\mathrm{eff}} = 10^4\,\kelvin$)
+\[ U = B = V = R = \dots = L = 0 \]
+\[ \Rightarrow U-B = B-V = V-R = \dots = 0 \]
+
+$\Rightarrow$ Farb-Farbdiagramm (FFD), Farb-Helligkeitsdiagramm (FHD)
+
+% TODO Grafikbeispiele HRD
