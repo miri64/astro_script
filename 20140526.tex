@@ -1,8 +1,80 @@
 \subsection{Direkte Beobachtung}
+\begin{goal}
+    "`Foto"' von der 2. Erde in der habitablen Zone (HZ)
+\end{goal}
+
+\paragraph{Problem} Stern $\leftrightarrow$ Planeten: Kontrastunterschied
+(Stern überstrahlt den Planeten)
+
+% TODO Skizze
+
+\textsc{Wien}'sches Verschiebungsgesetz:
+\[ T \cdot \lambda_{\max} = 0.29\,\milli\kelvin = \textbf{const} \]
+
+\begin{itemize}
+    \item IR -- bessere Unterscheidung
+    \item weite Systeme: Räumliche Seperation Stern -- Planet
+\end{itemize}
+
+\paragraph{Problem} Planet im Allgemeinen kühl und leuchtschwach\\
+$\hookrightarrow$ junge Planetensysteme (wegen $f_Q$)
+
+\paragraph{Beispiele}
+\begin{itemize}
+    \item 2M1207\\
+        Planetenkanditat um braunen Zwerg
+    \item HR8799: Sonnensystem in massereicher "`Ausführung"'
+        \begin{align*}
+            b &: 10\,M_{\jupiter} \\
+            c &: 10\,M_{\jupiter} \\
+            d &: 7\,M_{\jupiter} 
+        \end{align*}
+\end{itemize}
 
 \chapter[Doppelsterne]{Doppelsterne (DS)}
 \section{Klassen von DS}
+\begin{itemize}
+    \item visuelle DS (direkte Beobarchtung)
+    \item astronometrische DS
+    \item spektroskopische DS
+        \begin{itemize}
+            \item Single line
+            \item double line
+        \end{itemize}
+    \item Bedeckungsveränderlichkeit (Transit)
+\end{itemize}
+
 \section{Roche-Lobe-Massentransfer}
+% TODO Skizze
+
+\paragraph{Annahme} $M_{*,1} = M_{*,2}$; Gas: H (1-atomig)
+\begin{align*}
+    R &: \text{Radius-$RL$} \\
+    y &= R - d \\
+    A &= \pi x^2
+\end{align*}
+
+\paragraph{Annahme} $\boxed{d \ll R}$
+\begin{align*}
+    x^2 + \left(y + \frac{d}{2}\right)^2 &= R^2 \\
+    x^2 + \left(R - d + \frac{d}{2}\right)^2 &= x^2 \left(R - \frac{d}{2}\right)^2 = R^2 \\
+    \Rightarrow x^2 + \cancel{R^2} - \left(\cancel{R} - \frac{d}{2}\right)^2 &= R \cdot d - \underset{\approx 0}{\frac{d^2}{4}} \approx R \cdot d \\
+    \Rightarrow x &= \sqrt{R \cdot d}
+\end{align*}
+
+\paragraph{Massentransfer}
+\begin{align*}
+    \dot M &= A \cdot \rho \cdot v \\
+           &= \pi \cdot R \cdot d \cdot \rho \cdot v
+\end{align*}
+
+$v = v_{\mathrm{th}}$:
+\begin{align*}
+    \frac{m_{\mathrm{H}}}{\cancel{2}} v_{\mathrm{th}}^2 &= \frac{3}{\cancel{2}} kT \\
+    v_{\mathrm{th}} &= \sqrt{\frac{3kT}{m_{\mathrm{H}}}} \\
+    \Rightarrow \dot M &= \pi \underbrace{\underset{\uparrow}{\rho} R d \sqrt{\frac{3k\overset{\downarrow}{T}}{m_{\mathrm{H}}}}}_{\text{von $d$ abhängig}} \sim \boxed{d} \\
+                       &\Rightarrow \boxed{\dot M \sim d^3}
+\end{align*}
 
 \part{Astronomische Beobachtungsgrößen}
 \chapter{Astronomische Spektroskopie}
